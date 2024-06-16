@@ -26,7 +26,7 @@ docker-compose up --build --force-recreate
 
 1. Open your brower or use a tool like [Postman](https://www.postman.com/)
 
-2. Navigate to the following URL:
+2. Navigate/use the following URL:
 
 ```
 http://<your-host>:8080/superheroes
