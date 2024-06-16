@@ -4,7 +4,7 @@ This is a simple API that allows you to get information about superheroes.
 
 ## Prepare the project
 
-1. Please make sure have [Maven](https://maven.apache.org/) and [Docker](https://www.docker.com/) installed on your machine.
+1. Please make sure have [Maven](https://maven.apache.org/) and [Docker](https://www.docker.com/) installed and running on your machine.
 
 2. Open a terminal
 
