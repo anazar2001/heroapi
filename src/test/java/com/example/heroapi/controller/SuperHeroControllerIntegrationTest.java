@@ -26,7 +26,7 @@ import com.example.heroapi.dto.SuperHeroDTO;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = { DockerComposeTestConfig.Initializer.class })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SuperHeroControllerIT extends AbstractSuperHeroTest {
+class SuperHeroControllerIntegrationTest extends AbstractSuperHeroTest {
 
     @Autowired
     private TestRestTemplate restTemplate;

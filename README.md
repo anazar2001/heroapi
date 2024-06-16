@@ -13,13 +13,32 @@ This is a simple API that allows you to get information about superheroes.
 4. Build the project by running the following commands:
 
 ```bash
-mvn clean package
+mvn clean package -DskipTests
 ```
 
 5. Run the following command to build the application docker image, download the dependencies and start the application:
 
 ```bash
 docker-compose up --build --force-recreate
+```
+
+6. To stop the application run the following command:
+
+```bash
+docker-compose stop
+```
+This will have to be done before running the project tests.
+
+8. To start application without rebuilding it, run the following command:
+
+```bash
+docker-compose start
+```
+
+7. To run the project unit/integration tests, run the following command:
+
+```bash
+mvn test
 ```
 
 ## Testing the SuperHero API

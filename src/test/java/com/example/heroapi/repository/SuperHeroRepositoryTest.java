@@ -23,7 +23,7 @@ import com.example.heroapi.entity.SuperHero;
 @DataJpaTest(excludeAutoConfiguration = FlywayAutoConfiguration.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = {DockerComposeTestConfig.Initializer.class})
-class SuperHeroRepositoryIT {
+class SuperHeroRepositoryTest {
 
     @Autowired
     private SuperHeroRepository superHeroRepository;
