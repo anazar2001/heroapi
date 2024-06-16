@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   app:
+    image: heroapi-app:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,6 +15,8 @@ services:
     depends_on:
       - db
       - flyway
+    networks:
+      - hero_network
 
   db:
     image: postgres:15.7
@@ -25,14 +28,21 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - hero_network
 
   flyway:
     image: flyway/flyway:10.15.0
-    command: -url=${DB_URL} -user=${DB_USER} -password=${DB_PASSWORD} -locations=filesystem:/flyway/sql migrate
+    command: -url=${DB_URL} -user=${DB_USER} -password=${DB_PASSWORD} -locations=filesystem:/flyway/sql -schemas=${DB_USER} migrate
     volumes:
       - ./src/main/resources/sql:/flyway/sql
     depends_on:
       - db
+    networks:
+      - hero_network
 
 volumes:
   pgdata:
+
+networks:
+  hero_network:
