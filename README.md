@@ -54,3 +54,19 @@ http://<your-host>:8080/superheroes
 You should see a list of all available SuperHeroes in the database, in JSON format.
 
 3. To get more information on what operations are supported and how to use SuperHero API please look at the [SuperHeroController](src/main/java/com/example/heroapi/controller/SuperHeroController.java) class.
+
+## Assumptions
+
+1. I used PostgreSQL as a database for this project. For both the application and the integration tests. This is because it is always better to test the same database as the one used in production. But for instance h2db and PostgreSQL though have a similar syntax but not exactly the same. And to have different ddl/dml scripts for the application and the tests is not great.
+
+2. I used docker-compose to start the db and also to bring up the integration tests dependencies with the help of TestContainers.
+
+3. There could be added more logging and this logging should ideally use the messages from the messages.properties or other similar place. I started using this approach in [SuperHeroController](src/main/java/com/example/heroapi/controller/SuperHeroController.java).
+
+4. I have added just a few endpoints to the RestController and dependant classes. More endpoints could be added.
+
+5. For testing I used JUnit 5, Mockito and TestContainers.
+
+6. [Flyway](https://flywaydb.org/) was used for the database migrations and version control inside the database.
+
+7. Spring Data JPA were used to interact with the database.
