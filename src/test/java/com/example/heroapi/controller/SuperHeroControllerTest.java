@@ -182,7 +182,7 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
         List<SuperHero> superHeroes = List.of(createTestHero(1L, "Superman1"), createTestHero(2L, "Superman2"));
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        when(superHeroService.getAllSuperHeros()).thenReturn(superHeroes);
+        when(superHeroService.getAllSuperHeroes()).thenReturn(superHeroes);
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
@@ -190,7 +190,7 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(superHeroesDTOs)));
 
-        verify(superHeroService).getAllSuperHeros();
+        verify(superHeroService).getAllSuperHeroes();
     }
 
     @Test
@@ -198,14 +198,14 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
 
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        doThrow(new SuperHeroServerException("Failed to get all SuperHeros")).when(superHeroService).getAllSuperHeros();
+        doThrow(new SuperHeroServerException("Failed to get all SuperHeros")).when(superHeroService).getAllSuperHeroes();
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
         mockMvc.perform(get("/superheroes"))
                 .andExpect(status().isInternalServerError());
 
-        verify(superHeroService).getAllSuperHeros();
+        verify(superHeroService).getAllSuperHeroes();
     }
 
     @Test
@@ -213,14 +213,14 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
 
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        doThrow(new SuperHeroNotFoundException("Failed to get all SuperHeros")).when(superHeroService).getAllSuperHeros();
+        doThrow(new SuperHeroNotFoundException("Failed to get all SuperHeros")).when(superHeroService).getAllSuperHeroes();
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
         mockMvc.perform(get("/superheroes"))
                 .andExpect(status().isNotFound());
 
-        verify(superHeroService).getAllSuperHeros();
+        verify(superHeroService).getAllSuperHeroes();
     }
 
     @Test
@@ -230,16 +230,16 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
         List<SuperHero> superHeroes = List.of(createTestHero(1L, "Superman1"), createTestHero(2L, "Superman2"));
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        when(superHeroService.getSuperHerosByAssociations(associations)).thenReturn(superHeroes);
+        when(superHeroService.getSuperHeroesByAssociations(associations)).thenReturn(superHeroes);
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
         mockMvc.perform(get("/superheroes/search")
-                .param("associations", "Justice League", "Avengers"))
+                .param("association", "Justice League", "Avengers"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(superHeroesDTOs)));
 
-        verify(superHeroService).getSuperHerosByAssociations(associations);
+        verify(superHeroService).getSuperHeroesByAssociations(associations);
     }
 
     @Test
@@ -248,15 +248,15 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
         List<String> associations = List.of("Justice League", "Avengers");
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        doThrow(new SuperHeroServerException("Failed to get all SuperHeros")).when(superHeroService).getSuperHerosByAssociations(associations);
+        doThrow(new SuperHeroServerException("Failed to get all SuperHeros")).when(superHeroService).getSuperHeroesByAssociations(associations);
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
         mockMvc.perform(get("/superheroes/search")
-                .param("associations", "Justice League", "Avengers"))
+                .param("association", "Justice League", "Avengers"))
                 .andExpect(status().isInternalServerError());
 
-        verify(superHeroService).getSuperHerosByAssociations(associations);
+        verify(superHeroService).getSuperHeroesByAssociations(associations);
     }
 
     @Test
@@ -265,14 +265,14 @@ class SuperHeroControllerTest extends AbstractSuperHeroTest {
         List<String> associations = List.of("Justice League", "Avengers");
         List<SuperHeroDTO> superHeroesDTOs = List.of(createTestHeroDTO(1L, "Superman1"), createTestHeroDTO(2L, "Superman2"));
 
-        doThrow(new SuperHeroNotFoundException("Failed to get all SuperHeros")).when(superHeroService).getSuperHerosByAssociations(associations);
+        doThrow(new SuperHeroNotFoundException("Failed to get all SuperHeros")).when(superHeroService).getSuperHeroesByAssociations(associations);
         when(conversionService.convert(any(SuperHero.class), eq(SuperHeroDTO.class)))
                 .thenReturn(superHeroesDTOs.get(0), superHeroesDTOs.get(1));
 
         mockMvc.perform(get("/superheroes/search")
-                .param("associations", "Justice League", "Avengers"))
+                .param("association", "Justice League", "Avengers"))
                 .andExpect(status().isNotFound());
 
-        verify(superHeroService).getSuperHerosByAssociations(associations);
+        verify(superHeroService).getSuperHeroesByAssociations(associations);
     }
 }

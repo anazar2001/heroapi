@@ -23,7 +23,7 @@ import com.example.heroapi.entity.SuperHero;
 @DataJpaTest(excludeAutoConfiguration = FlywayAutoConfiguration.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = {DockerComposeTestConfig.Initializer.class})
-class SuperHeroRepositoryTest {
+class SuperHeroRepositoryIT {
 
     @Autowired
     private SuperHeroRepository superHeroRepository;
@@ -64,28 +64,28 @@ class SuperHeroRepositoryTest {
     }
 
     @Test
-    void testFindAllSuperHeros() {
-        List<SuperHero> heros = superHeroRepository.findAll();
-        assertNotNull(heros, "Should not return null");
-        assertEquals(2, heros.size(), "Should return 2 heroes");
+    void testFindAllSuperHeroes() {
+        List<SuperHero> heroes = superHeroRepository.findAll();
+        assertNotNull(heroes, "Should not return null");
+        assertEquals(2, heroes.size(), "Should return 2 heroes");
         
-        assertEquals("Clark Kent", heros.get(0).getName(), "First hero1 name should match");
-        assertEquals("Tony Stark", heros.get(1).getName(), "First hero2 name should match");
+        assertEquals("Clark Kent", heroes.get(0).getName(), "First hero1 name should match");
+        assertEquals("Tony Stark", heroes.get(1).getName(), "First hero2 name should match");
     }
 
     @Test
     void testFindSuperHeroesByTwoAssociations() {
         List<String> associations = Arrays.asList("avengers", "thanos");
-        List<SuperHero> heros = superHeroRepository.findSuperHeroesByAssociations(associations);
-        assertNotNull(heros, "Should not return null");
-        assertEquals(1, heros.size(), "Should return 1 hero");
+        List<SuperHero> heroes = superHeroRepository.findSuperHeroesByAssociations(associations);
+        assertNotNull(heroes, "Should not return null");
+        assertEquals(1, heroes.size(), "Should return 1 hero");
     }
 
     @Test
     void testFindSuperHeroesByZeroAssociations() {
-        List<SuperHero> heros = superHeroRepository.findSuperHeroesByAssociations(emptyList());
-        assertNotNull(heros, "Should not return null");
-        assertEquals(0, heros.size(), "Should return 0 hero");
+        List<SuperHero> heroes = superHeroRepository.findSuperHeroesByAssociations(emptyList());
+        assertNotNull(heroes, "Should not return null");
+        assertEquals(0, heroes.size(), "Should return 0 hero");
     }
 
     private SuperHero createTestHero() {

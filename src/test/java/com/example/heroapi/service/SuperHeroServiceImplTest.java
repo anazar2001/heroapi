@@ -109,7 +109,7 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
     }
 
     @Test
-    void testGetAllSuperHeros() {
+    void testGetAllSuperHeroes() {
 
         // given
         SuperHero superHero1 = createTestHero("name1");
@@ -118,44 +118,44 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
         when(superHeroRepository.findAll()).thenReturn(List.of(superHero1, superHero2));
 
         // when
-        List<SuperHero> superHeros = superHeroService.getAllSuperHeros();
+        List<SuperHero> superHeroes = superHeroService.getAllSuperHeroes();
 
         // then
         verify(superHeroRepository).findAll();
-        assertNotNull(superHeros, "SuperHeros should not be null");
-        assertEquals(2, superHeros.size(), "SuperHeros should contain 2 elements");
-        assertEquals("name1", superHeros.get(0).getName(), "First hero name should match");
-        assertEquals("name2", superHeros.get(1).getName(), "Second hero name should match");
+        assertNotNull(superHeroes, "SuperHeroes should not be null");
+        assertEquals(2, superHeroes.size(), "SuperHeroes should contain 2 elements");
+        assertEquals("name1", superHeroes.get(0).getName(), "First hero name should match");
+        assertEquals("name2", superHeroes.get(1).getName(), "Second hero name should match");
     }
 
     @Test
-    void testGetAllSuperHerosNotFound() {
+    void testGetAllSuperHeroesNotFound() {
 
         // given
         when(superHeroRepository.findAll()).thenReturn(List.of());
 
         // when
         SuperHeroNotFoundException exception = assertThrows(SuperHeroNotFoundException.class,
-                () -> superHeroService.getAllSuperHeros());
+                () -> superHeroService.getAllSuperHeroes());
 
         // then
         assertNotNull(exception, "Exception should not be null");
-        assertEquals("SuperHeros not found", exception.getMessage(), "Exception message should match");
+        assertEquals("SuperHeroes not found", exception.getMessage(), "Exception message should match");
     }
 
     @Test
-    void testGetAllSuperHerosFails() {
+    void testGetAllSuperHeroesFails() {
 
         // given
-        when(superHeroRepository.findAll()).thenThrow(new RuntimeException("Failed to get all SuperHeros"));
+        when(superHeroRepository.findAll()).thenThrow(new RuntimeException("Failed to get all SuperHeroes"));
 
         // when
         SuperHeroServerException exception = assertThrows(SuperHeroServerException.class,
-                () -> superHeroService.getAllSuperHeros());
+                () -> superHeroService.getAllSuperHeroes());
 
         // then
         assertNotNull(exception, "Exception should not be null");
-        assertEquals("Failed to get all SuperHeros", exception.getMessage(), "Exception message should match");
+        assertEquals("Failed to get all SuperHeroes", exception.getMessage(), "Exception message should match");
     }
 
     @Test
@@ -209,7 +209,7 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
     }
 
     @Test
-    void testGetSuperHerosByAssociations() {
+    void testGetSuperHeroesByAssociations() {
 
         // given
         List<String> associations = List.of("association1", "association2");
@@ -220,14 +220,14 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
                 .thenReturn(List.of(superHero1, superHero2));
 
         // when
-        List<SuperHero> superHeros = superHeroService.getSuperHerosByAssociations(associations);
+        List<SuperHero> superHeroes = superHeroService.getSuperHeroesByAssociations(associations);
 
         // then
         verify(superHeroRepository).findSuperHeroesByAssociations(associations);
-        assertNotNull(superHeros, "SuperHeros should not be null");
-        assertEquals(2, superHeros.size(), "SuperHeros should contain 2 elements");
-        assertEquals("name1", superHeros.get(0).getName(), "First hero name should match");
-        assertEquals("name2", superHeros.get(1).getName(), "Second hero name should match");
+        assertNotNull(superHeroes, "SuperHeroes should not be null");
+        assertEquals(2, superHeroes.size(), "SuperHeroes should contain 2 elements");
+        assertEquals("name1", superHeroes.get(0).getName(), "First hero name should match");
+        assertEquals("name2", superHeroes.get(1).getName(), "Second hero name should match");
     }
 
     @Test
@@ -239,7 +239,7 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
 
         // when
         SuperHeroNotFoundException exception = assertThrows(SuperHeroNotFoundException.class,
-                () -> superHeroService.getSuperHerosByAssociations(associations));
+                () -> superHeroService.getSuperHeroesByAssociations(associations));
 
         // then
         assertNotNull(exception, "Exception should not be null");
@@ -257,7 +257,7 @@ class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
 
         // when
         SuperHeroServerException exception = assertThrows(SuperHeroServerException.class,
-                () -> superHeroService.getSuperHerosByAssociations(associations));
+                () -> superHeroService.getSuperHeroesByAssociations(associations));
 
         // then
         assertNotNull(exception, "Exception should not be null");

@@ -11,12 +11,10 @@ import com.example.heroapi.exception.SuperHeroServerException;
 import com.example.heroapi.repository.SuperHeroRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The default implementation of {@link SuperHeroService}.
  */
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class SuperHeroServiceImpl implements SuperHeroService {
@@ -34,10 +32,7 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         try {
             savedSuperHero = superHeroRepository.save(superHero);
         } catch (Exception e) {
-            String error = "Failed to save SuperHero: " + superHero;
-
-            log.error(error, e);
-            throw new SuperHeroServerException(error, e);
+            throw new SuperHeroServerException("Failed to save SuperHero: " + superHero, e);
         }
 
         return savedSuperHero;
@@ -48,10 +43,7 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         try {
             superHeroRepository.deleteById(id);
         } catch (Exception e) {
-            String error = "Failed to delete SuperHero: " + id;
-
-            log.error(error, e);
-            throw new SuperHeroServerException(error, e);
+            throw new SuperHeroServerException("Failed to delete SuperHero: " + id, e);
         }
     }
 
@@ -62,10 +54,7 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         try {
             superHero = superHeroRepository.findById(id);
         } catch (Exception e) {
-            String error = "Failed to get SuperHero: " + id;
-
-            log.error(error, e);
-            throw new SuperHeroServerException(error, e);
+            throw new SuperHeroServerException("Failed to get SuperHero: " + id, e);
         }
 
         if (superHero.isEmpty()) {
@@ -76,44 +65,38 @@ public class SuperHeroServiceImpl implements SuperHeroService {
     }
 
     @Override
-    public List<SuperHero> getAllSuperHeros() {
+    public List<SuperHero> getAllSuperHeroes() {
 
-        List<SuperHero> superHeros = null;
+        List<SuperHero> superHeroes = null;
 
         try {
-            superHeros = superHeroRepository.findAll();
+            superHeroes = superHeroRepository.findAll();
         } catch (Exception e) {
-            String error = "Failed to get all SuperHeros";
-
-            log.error(error, e);
-            throw new SuperHeroServerException(error, e);
+            throw new SuperHeroServerException("Failed to get all SuperHeroes", e);
         }
 
-        if (superHeros.isEmpty()) {
-            throw new SuperHeroNotFoundException("SuperHeros not found");
+        if (superHeroes.isEmpty()) {
+            throw new SuperHeroNotFoundException("SuperHeroes not found");
         }
 
-        return superHeros;
+        return superHeroes;
     }
 
     @Override
-    public List<SuperHero> getSuperHerosByAssociations(List<String> associations) {
+    public List<SuperHero> getSuperHeroesByAssociations(List<String> associations) {
 
-        List<SuperHero> superHeros = null;
+        List<SuperHero> superHeroes = null;
 
         try {
-            superHeros = superHeroRepository.findSuperHeroesByAssociations(associations);
+            superHeroes = superHeroRepository.findSuperHeroesByAssociations(associations);
         } catch (Exception e) {
-            String error = "Failed to get SuperHeros by associations: " + associations;
-
-            log.error(error, e);
-            throw new SuperHeroServerException(error, e);
+            throw new SuperHeroServerException("Failed to get SuperHeros by associations: " + associations, e);
         }
 
-        if (superHeros.isEmpty()) {
+        if (superHeroes.isEmpty()) {
             throw new SuperHeroNotFoundException("SuperHeros by associations not found: " + associations);
         }
 
-        return superHeros;
+        return superHeroes;
     }
 }

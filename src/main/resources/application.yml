@@ -7,3 +7,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+  messages:
+    basename: messages
+    encoding: UTF-8

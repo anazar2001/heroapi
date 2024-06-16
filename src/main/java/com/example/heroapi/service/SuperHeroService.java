@@ -1,7 +1,6 @@
 package com.example.heroapi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.heroapi.entity.SuperHero;
 import com.example.heroapi.exception.SuperHeroNotFoundException;
@@ -51,7 +50,7 @@ public interface SuperHeroService {
      * @throws SuperHeroServerException If the super heroes cannot be retrieved
      * @throws SuperHeroNotFoundException If no super heroes are found
      */
-    public List<SuperHero> getAllSuperHeros();
+    public List<SuperHero> getAllSuperHeroes();
 
     /**
      * Get super heroes by associations.
@@ -63,5 +62,5 @@ public interface SuperHeroService {
      * @throws SuperHeroServerException If the super heroes cannot be retrieved
      * @throws SuperHeroNotFoundException If no super heroes are found
      */
-    public List<SuperHero> getSuperHerosByAssociations(List<String> associations);
+    public List<SuperHero> getSuperHeroesByAssociations(List<String> associations);
 }

@@ -1,14 +1,24 @@
 package com.example.heroapi.configuration;
 
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-@Configuration
+@TestConfiguration
 public class SuperHeroTestConfig {
+
     @Bean
-    public FormattingConversionService formattingConversionService() {
-        return new DefaultFormattingConversionService();
+    public TestRestTemplate restTemplate() {
+        return new TestRestTemplate();
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 }
