@@ -21,6 +21,7 @@ public class SuperHeroDTOToSuperHeroConverter implements Converter<SuperHeroDTO,
         }
 
         return SuperHero.builder()
+            .id(source.getId())
             .alias(source.getAlias())
             .name(source.getName())
             .powers(source.getPowers())

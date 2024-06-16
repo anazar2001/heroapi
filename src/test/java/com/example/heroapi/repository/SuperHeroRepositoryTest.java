@@ -58,15 +58,19 @@ class SuperHeroRepositoryTest {
         assertNull(superHeroRepository.findById(savedHero.getId()).orElse(null), "Hero should be removed");
     }
 
-    private SuperHero createTestHero() {
-        return SuperHero.builder()
-                .alias("alias1")
-                .name("name1")
-                .origin("origin1")
-                .powers(Arrays.asList("power11", "power12"))
-                .weapons(Arrays.asList("weapon11", "weapon12"))
-                .associations(Arrays.asList("association11", "association12", "association13"))
-                .build();
+    @Test
+    void testGetSuperHeroByIdNotFound() {
+        assertNull(superHeroRepository.findById(0L).orElse(null), "Should not find hero with id 0");
+    }
+
+    @Test
+    void testFindAllSuperHeros() {
+        List<SuperHero> heros = superHeroRepository.findAll();
+        assertNotNull(heros, "Should not return null");
+        assertEquals(2, heros.size(), "Should return 2 heroes");
+        
+        assertEquals("Clark Kent", heros.get(0).getName(), "First hero1 name should match");
+        assertEquals("Tony Stark", heros.get(1).getName(), "First hero2 name should match");
     }
 
     @Test
@@ -82,5 +86,16 @@ class SuperHeroRepositoryTest {
         List<SuperHero> heros = superHeroRepository.findSuperHeroesByAssociations(emptyList());
         assertNotNull(heros, "Should not return null");
         assertEquals(0, heros.size(), "Should return 0 hero");
+    }
+
+    private SuperHero createTestHero() {
+        return SuperHero.builder()
+                .alias("alias1")
+                .name("name1")
+                .origin("origin1")
+                .powers(Arrays.asList("power11", "power12"))
+                .weapons(Arrays.asList("weapon11", "weapon12"))
+                .associations(Arrays.asList("association11", "association12", "association13"))
+                .build();
     }
 }

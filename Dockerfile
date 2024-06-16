@@ -7,8 +7,5 @@ WORKDIR $APP_HOME
 
 COPY target/heroapi-0.0.1-SNAPSHOT.jar /usr/heroapi/heroapi.jar
 
-# Copy the initialization script to the Docker container
-# COPY src/main/resources/initdb /docker-entrypoint-initdb.d
-
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/heroapi/heroapi.jar"]

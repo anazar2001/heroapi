@@ -35,6 +35,7 @@ class SuperHeroToSuperHeroDTOConverterTest {
 
         // given
         SuperHero superHero = SuperHero.builder()
+                .id(1L)
                 .alias("Iron Man")
                 .name("Tony Stark")
                 .powers(List.of("genius-intelligence", "wealth"))
@@ -47,6 +48,7 @@ class SuperHeroToSuperHeroDTOConverterTest {
 
         // then
         assertNotNull(superHeroDto, "SuperHeroDto should not be null");
+        assertEquals(superHero.getId(), superHeroDto.getId(), "Id should match");
         assertEquals(superHero.getAlias(), superHeroDto.getAlias(), "Alias should match");
         assertEquals(superHero.getName(), superHeroDto.getName(), "Name should match");
         assertEquals(superHero.getPowers(), superHeroDto.getPowers(), "Powers should match");
