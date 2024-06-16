@@ -29,13 +29,13 @@ docker-compose stop
 ```
 This will have to be done before running the project tests.
 
-8. To start application without rebuilding it, run the following command:
+7. To start application without rebuilding it, run the following command:
 
 ```bash
 docker-compose start
 ```
 
-7. To run the project unit/integration tests, run the following command:
+8. To run the project unit/integration tests, run the following command:
 
 ```bash
 mvn test
