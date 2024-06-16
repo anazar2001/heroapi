@@ -33,6 +33,9 @@ import com.example.heroapi.exception.SuperHeroServerException;
 import com.example.heroapi.service.SuperHeroService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Unit tests for the {@link SuperHeroController}.
+ */
 @WebMvcTest(SuperHeroController.class)
 class SuperHeroControllerTest extends AbstractSuperHeroTest {
 

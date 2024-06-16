@@ -26,6 +26,9 @@ import com.example.heroapi.exception.SuperHeroNotFoundException;
 import com.example.heroapi.exception.SuperHeroServerException;
 import com.example.heroapi.repository.SuperHeroRepository;
 
+/**
+ * Unit tests for {@link SuperHeroServiceImpl}.
+ */
 @ExtendWith(MockitoExtension.class)
 class SuperHeroServiceImplTest extends AbstractSuperHeroTest {
 

@@ -20,6 +20,9 @@ import org.springframework.test.context.ContextConfiguration;
 import com.example.heroapi.configuration.DockerComposeTestConfig;
 import com.example.heroapi.entity.SuperHero;
 
+/**
+ * Integration tests for the {@link SuperHeroRepository}.
+ */
 @DataJpaTest(excludeAutoConfiguration = FlywayAutoConfiguration.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = {DockerComposeTestConfig.Initializer.class})

@@ -13,6 +13,9 @@ import org.springframework.core.convert.converter.Converter;
 import com.example.heroapi.dto.SuperHeroDTO;
 import com.example.heroapi.entity.SuperHero;
 
+/**
+ * Unit tests for {@link SuperHeroDTOToSuperHeroConverter}.
+ */
 class SuperHeroDTOToSuperHeroConverterTest {
 
     private static Converter<SuperHeroDTO, SuperHero> converter;

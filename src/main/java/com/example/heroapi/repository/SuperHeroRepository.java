@@ -10,6 +10,12 @@ import com.example.heroapi.entity.SuperHero;
 
 public interface SuperHeroRepository extends JpaRepository<SuperHero, Long> {
 
+    /**
+     * Get super heroes by associations.
+     * 
+     * @param associations The associations to search for
+     * @return Super heroes with the given list of associations
+     */
     @Query("SELECT sh FROM SuperHero sh " +
            "WHERE EXISTS (" +
            "    SELECT 1 FROM SuperHero sha " +

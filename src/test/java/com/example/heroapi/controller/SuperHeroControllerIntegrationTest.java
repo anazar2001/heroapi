@@ -23,6 +23,9 @@ import com.example.heroapi.AbstractSuperHeroTest;
 import com.example.heroapi.configuration.DockerComposeTestConfig;
 import com.example.heroapi.dto.SuperHeroDTO;
 
+/**
+ * Integration tests for the {@link SuperHeroController}.
+ */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = { DockerComposeTestConfig.Initializer.class })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

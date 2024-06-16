@@ -21,6 +21,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 
     private final SuperHeroRepository superHeroRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SuperHero saveSuperHero(SuperHero superHero) {
         if (superHero == null) {
@@ -38,6 +41,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         return savedSuperHero;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteSuperHeroById(Long id) {
         try {
@@ -47,6 +53,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SuperHero getSuperHeroById(Long id) {
         Optional<SuperHero> superHero = null;
@@ -64,6 +73,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         return superHero.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<SuperHero> getAllSuperHeroes() {
 
@@ -82,6 +94,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
         return superHeroes;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<SuperHero> getSuperHeroesByAssociations(List<String> associations) {
 

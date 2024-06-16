@@ -1,5 +1,8 @@
 package com.example.heroapi.messagges;
 
+/**
+ * The keys for the messages in the message source.
+ */
 public enum MessageKeys {
     SUPER_HERO_NOT_FOUND("SUPER_HORO_NOT_FOUND"),
     SUPER_HERO_REQUEST_VALIDATION_ERROR("SUPER_HERO_REQUEST_VALIDATION_ERROR"),

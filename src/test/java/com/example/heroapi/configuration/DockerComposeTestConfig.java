@@ -13,6 +13,10 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PreDestroy;
 
+/**
+ * Test configuration to prepare dependant Docker containers required for the
+ * application and integration tests.
+ */
 @TestConfiguration
 public class DockerComposeTestConfig {
 
@@ -22,8 +26,8 @@ public class DockerComposeTestConfig {
     static {
         // Start Docker Compose container before Spring context is initialized
         composeContainer = new DockerComposeContainer<>(new File("docker-compose.yml"))
-            .withExposedService("db", DB_PORT, Wait.forListeningPort())
-            .withStartupTimeout(java.time.Duration.ofMinutes(5));
+                .withExposedService("db", DB_PORT, Wait.forListeningPort())
+                .withStartupTimeout(java.time.Duration.ofMinutes(5));
         composeContainer.start();
     }
 
@@ -46,11 +50,11 @@ public class DockerComposeTestConfig {
             String dbUrl = String.format("jdbc:postgresql://%s:%d/%s", dbHost, dbPort, dbName);
 
             TestPropertyValues.of(
-                "spring.datasource.url=" + dbUrl,
-                "spring.datasource.username=" + dbUser,
-                "spring.datasource.password=" + dbPassword,
-                "spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
-                "spring.jpa.properties.hibernate.default_schema=" + dbUser).applyTo(context.getEnvironment());
+                    "spring.datasource.url=" + dbUrl,
+                    "spring.datasource.username=" + dbUser,
+                    "spring.datasource.password=" + dbPassword,
+                    "spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
+                    "spring.jpa.properties.hibernate.default_schema=" + dbUser).applyTo(context.getEnvironment());
         }
     }
 

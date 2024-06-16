@@ -17,6 +17,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Entity which represents a super hero.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
