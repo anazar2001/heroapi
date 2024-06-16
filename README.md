@@ -70,3 +70,5 @@ You should see a list of all available SuperHeroes in the database, in JSON form
 6. [Flyway](https://flywaydb.org/) was used for the database migrations and version control inside the database.
 
 7. Spring Data JPA were used to interact with the database.
+
+8. Used [Lombok](https://projectlombok.org/) to reduce boilerplate code (getters, setters, constructors, hashcode, equals, etc).
