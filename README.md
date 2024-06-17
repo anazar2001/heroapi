@@ -72,3 +72,5 @@ You should see a list of all available SuperHeroes in the database, in JSON form
 7. Spring Data JPA were used to interact with the database.
 
 8. Used [Lombok](https://projectlombok.org/) to reduce boilerplate code (getters, setters, constructors, hashcode, equals, etc).
+
+9. I used Java 17 for this project.
